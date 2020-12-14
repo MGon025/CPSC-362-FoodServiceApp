@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Admin</title>
+<style>
+    table, th, td {border: 1px solid black;}
+    yes {color: green;}
+    no {color: red;}
+</style>
+</head>
+<body>
+    <div><a href="/">Home</a></div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+
+    <form action="" method="POST">
+        <p>
+            <div><p>Name: <input type="text" id="name_id" name="name" required></p></div>
+            Capacity: <input type="number" id="cap_id" name="capacity" value=0>
+            <div><p>
+            Dine in: <input type="checkbox" id="dine_id" name="dinein">
+            Drive Through: <input type="checkbox" id="drive_id" name="drivethru">
+            Delivery: <input type="checkbox" id="delivery_id" name="delivery">
+            Pick up: <input type="checkbox" id="pick_id" name="pickup">
+            </p></div>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+    
+    <h1>Restaurants:</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Dine In</th>
+            <th>Drive Through</th>
+            <th>Delivery</th>
+            <th>Pick Up</th>
+            <th></th>
+        </tr>
+    {% for service in services %}
+        <tr>
+            <th>{{ service.id  }}</th>
+            <th>{{ service.restaurant_name }}</th>
+            <th>{{ service.capacity }}</th> 
+            <th>{% if service.dine_in %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.drive_through %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.delivery %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.pick_up %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th><a href="/delete/{{ service.id }}">delete</a></th>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

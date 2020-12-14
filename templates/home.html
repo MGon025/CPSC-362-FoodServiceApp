@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Food Service App</title>
+<style>
+    table, th, td {border: 1px solid black;}
+    yes {color: green;}
+    no {color: red;}
+</style>
+</head>
+<body>
+    <div><a href="/restaurant">Admin</a> &emsp; <a href="/">Reset Filter</a></div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+
+    <form action="" method="POST">
+        <p>
+            <div><p>Name: <input type="text" id="service" name="service"></div>
+            <div>Dine in: <input type="checkbox" name="dinein" checked></div>
+            <div>Drive through: <input type="checkbox" name="drivethru" checked></div>
+            <div>Delivery: <input type="checkbox" name="deliver" checked></div>
+            <div>Pick up: <input type="checkbox" name="pickup" checked></div>
+            <p><input type="submit" value="Filter"></p>
+        </p>
+    </form>
+    
+    <h1>Restaurants:</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Dine In</th>
+            <th>Drive Through</th>
+            <th>Delivery</th>
+            <th>Pick Up</th>
+        </tr>
+    {% for service in services %}
+        <tr>
+            <th>{{ service.restaurant_name }}</th>
+            <th>{{ service.capacity }}</th> 
+            <th>{% if service.dine_in %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.drive_through %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.delivery %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+            <th>{% if service.pick_up %} <yes>&#10003;</yes> {% else %} <no>&cross;</no> {% endif %}</th>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

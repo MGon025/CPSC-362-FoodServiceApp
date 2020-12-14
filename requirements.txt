@@ -1,0 +1,6 @@
+flask
+flask-dance[sqla]
+flask-sqlalchemy
+python-dotenv
+email_validator
+
