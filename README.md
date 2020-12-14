@@ -11,3 +11,6 @@ flask run
 This video starts from 'flask run': https://youtu.be/2jXyY0Jg9YM  
 Don't worry about the database being called 'urlshortener'.    
 I took the foundation from another project I did.
+
+PS  
+the video link provided in the pdf file probably doesn't work since I had to reupload the video.
