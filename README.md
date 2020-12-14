@@ -9,3 +9,5 @@ source bash_env.sh
 flask run  
 
 This video starts from 'flask run': https://youtu.be/2jXyY0Jg9YM
+Don't worry about the database being called 'urlshortener'.  
+I took the foundation from another project I did.
